@@ -10,7 +10,7 @@ makeBlinkyDancer.prototype.constructor = makeBlinkyDancer;
 
 makeBlinkyDancer.prototype.step = function(){
   
-  console.log("blinky step", this);
+  //console.log("blinky step", this);
   //do old step
   //console.log("stepped");
   makeDancer.prototype.step.call(this);

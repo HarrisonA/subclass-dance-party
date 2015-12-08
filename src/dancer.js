@@ -20,7 +20,7 @@ makeDancer.prototype.step = function(){
   // it just schedules the next step
   //console.log('outside',this);
   var dancer = this;
-  console.log("dancer step", this);
+  //console.log("dancer step", this);
   // setTimeout.call(dancer,dancer.step, dancer.timeBetweenStep);
   
   //setTimeout.call(dancer,dancer.step, dancer.timeBetweenStep);
@@ -45,8 +45,26 @@ makeDancer.prototype.setPosition = function(top, left){
     width: '10px',
     height: '10px',
     //color: 'rgb(' + Math.random()*255 + "," + Math.random()*255 "," + Math.random()*255 + ")"
-    color: 'rgb(255,0,255)'
+    background: 'blue',
+    border: '5px solid blue'
   };
   this.$node.css(styleSettings);
   console.log("set position");
+};
+
+makeDancer.prototype.lineUp = function(fromTop){
+  this.$node.animate( {'left': '0px', 'top': fromTop + 'px'}, 2000);
+
+};
+
+
+makeDancer.prototype.changeLocation = function(){
+this.$node.animate( {
+  top:  $("body").height() * Math.random(),
+  left: $("body").width() * Math.random(),    
+}, 1000);
+
+
+
+
 };
