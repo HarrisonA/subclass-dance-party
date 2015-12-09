@@ -42,8 +42,45 @@ $(document).ready(function(){
 
   $(".changeLocation").on("click",function(event){
     for(var i = 0 ; i < window.dancers.length ; i++){
-      window.dancers[i].changeLocation();
+      var randomTopValue = $("body").height() * Math.random();
+      var randomLeftValue = $("body").width() * Math.random();
+      window.dancers[i].changeLocation(randomTopValue, randomLeftValue);
     }
 
   });
+
+$(".pairUp").on("click",function(event){
+    
+    //taken[i] === true that 
+    var taken =[];
+    var distances = [];
+    var minDistance;
+    var minIndex;
+    var partnerLeft;
+    var parterTop;
+
+    for(var i = 0 ; i < window.dancers.length ; i++){
+      if(taken[i]){
+        continue;
+      } 
+      taken[i]=true;
+
+      for(var j = 0 ; i < window.dancers.length; j++){
+        if(taken[j]){
+          distances[j] = Number.MAX_VALUE;
+        }  else{
+          distances[j]=window.dancers[i].calcDistance(window.dancers[j])
+        }
+      
+      }
+      minDistance = Math.min.apply( null, distances );
+      minIndex = distances.indexOf(minDistance);
+      taken[minIndex]=true;
+      //To do: define partner left, partner top
+      window.dancers[i].changeLocation(partnerLeft, partnerTop);
+    }
+
+  });
+
+
 });

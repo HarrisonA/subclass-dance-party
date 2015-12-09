@@ -42,10 +42,12 @@ makeDancer.prototype.setPosition = function(top, left){
   var styleSettings = {
     top: top,
     left: left,
-    width: '10px',
-    height: '10px',
+    width: '200px',
+    height: '200px',
     //color: 'rgb(' + Math.random()*255 + "," + Math.random()*255 "," + Math.random()*255 + ")"
-    background: 'blue',
+    //background: 'blue',
+    "background-image":'url(http://successmentor.com/wp-content/uploads/2015/01/Russell-WIlson-glorifies-God-transparent-272x300.png)',
+    "background-repeat": "no-repeat",
     border: '5px solid blue'
   };
   this.$node.css(styleSettings);
@@ -58,13 +60,27 @@ makeDancer.prototype.lineUp = function(fromTop){
 };
 
 
-makeDancer.prototype.changeLocation = function(){
-this.$node.animate( {
-  top:  $("body").height() * Math.random(),
-  left: $("body").width() * Math.random(),    
-}, 1000);
-
-
-
+makeDancer.prototype.changeLocation = function(topValue, leftValue){
+  this.$node.animate( {
+    top:  topValue,
+    left: leftValue,    
+  }, 1000);
 
 };
+
+
+makeDancer.prototype.calcDistance = function (otherDancer) {
+  var myTopValue = parseInt(this.$node.css("top"));
+  var myLeftValue = parseInt(this.$node.css("left"));
+
+  var otherTopValue = parseInt(otherDancer.$node.css("top"));
+  var otherLeftValue = parseInt(otherDancer.$node.css("left"));
+
+  //console.log(parseInt(this.$node.css("left")),this.$node.css("left"))
+  //console.log(typeof myTopValue, myLeftValue, otherLeftValue, otherTopValue,myTopValue - otherTopValue,myLeftValue - otherLeftValue,Math.pow(myTopValue - otherTopValue,2),Math.pow((myLeftValue - otherLeftValue),2));
+  var distance = Math.sqrt(Math.pow(myTopValue - otherTopValue,2) + Math.pow((myLeftValue - otherLeftValue),2));
+  console.log(distance)
+  return distance;
+
+  // body...
+}
